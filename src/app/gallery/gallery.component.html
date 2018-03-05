@@ -1,0 +1,13 @@
+<div class="form-group">
+  <button class="btn btn-outline-primary" [class.active] = "filterBy=='all'" (click)="filterBy='all'"> All </button>
+  <button class="btn btn-outline-primary" [class.active] = "filterBy=='boats'" (click)="filterBy='boat'"> Boat </button>
+  <button class="btn btn-outline-primary" [class.active] = "filterBy=='school'" (click)="filterBy='school'"> School </button>
+</div>
+
+<div class="row">
+  <ul id="thumbnailList">
+    <li *ngFor="let image of (visibleImages | imageFilter:filterBy)">
+      <img src="{{image.url}}" class="tn" width="200" height="160">
+    </li>
+  </ul>
+</div>

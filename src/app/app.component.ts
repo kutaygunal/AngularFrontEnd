@@ -1,4 +1,5 @@
-import{Component,OnInit}from'@angular/core';
+import{Component,OnInit }from'@angular/core';
+import { ViewChild , AfterViewInit} from '@angular/core';
 import{HttpClient}from'@angular/common/http';
 
 @Component({
@@ -11,6 +12,22 @@ import{HttpClient}from'@angular/common/http';
        border-top-right-radius : 0;
        border-top : 0;
     }
+
+    #headerImage{
+        float: right;
+        width: 19%;
+        margin-top: 10px;
+        border-style: solid;
+        border-width: medium;
+        border-color: black;
+        border-radius: 50%;
+  }
+     #accountName{
+        float: right;
+        color: black;
+        margin-right: 20px;
+        margin-top: 40px;
+  }
   `
   ]
  })
@@ -18,6 +35,7 @@ export class AppComponent implements OnInit{
   query : string;
   artists : object;
   currentArtist : object;
+
 
   showArtist(item){
       this.query = item.name;
@@ -34,6 +52,9 @@ export class AppComponent implements OnInit{
         data => {
            this.artists = data;
         })
-
   }
+
+
+
+
 }
