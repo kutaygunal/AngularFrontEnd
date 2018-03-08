@@ -1,6 +1,4 @@
-import{Component,OnInit }from'@angular/core';
-import { ViewChild , AfterViewInit} from '@angular/core';
-import{HttpClient}from'@angular/common/http';
+import{Component }from'@angular/core';
 
 @Component({
   selector: 'app-root',
@@ -31,30 +29,6 @@ import{HttpClient}from'@angular/common/http';
   `
   ]
  })
-export class AppComponent implements OnInit{
-  query : string;
-  artists : object;
-  currentArtist : object;
-
-
-  showArtist(item){
-      this.query = item.name;
-      item.highlight = !item.highlight;
-      this.currentArtist = item;
-  }
-
-  constructor(private http : HttpClient){
-        this.query = '';
-  }
-
-  ngOnInit(): void {
-      this.http.get<Object>('../assets/data.json').subscribe(
-        data => {
-           this.artists = data;
-        })
-  }
-
-
-
+export class AppComponent{
 
 }

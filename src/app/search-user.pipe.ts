@@ -1,10 +1,10 @@
 import { Pipe, PipeTransform } from '@angular/core';
 
 @Pipe({
-  name: 'searchArtist'
+  name: 'searchUser'
 })
 
-export class SearchArtistPipe implements
+export class SearchUserPipe implements
 PipeTransform {
 
   transform(pipeData, pipeModifier): any {
