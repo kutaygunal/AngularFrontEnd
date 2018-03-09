@@ -38,6 +38,7 @@ router.get('/userAccounts/:id', function (req,res){
   });
 });
 
+
 router.post('/userAccounts', function (req,res){
   console.log('Create a user') ;
   var newUser = new User();
@@ -45,6 +46,13 @@ router.post('/userAccounts', function (req,res){
   newUser.password = req.body.password;
   newUser.firstName = req.body.firstName;
   newUser.lastName = req.body.lastName;
+  newUser.confirm = req.body.confirm;
+  newUser.name = req.body.name;
+  newUser.shortname = req.body.shortname;
+  newUser.reknown = req.body.reknown;
+  newUser.bio = req.body.bio;
+  newUser.posts = req.body.posts;
+  newUser.postsDates = req.body.postsDates;
   newUser.save(function(err,createdUser){
     if(err){
       console.log("Error creating user");
@@ -62,7 +70,14 @@ router.put('/userAccounts/:id',function(req,res){
       $set :{ username:  req.body.username,
               password:  req.body.password,
               firstName: req.body.firstName,
-              lastName:  req.body.lastName}
+              lastName:  req.body.lastName,
+              confirm:   req.body.confirm ,
+              name:  req.body.name,
+              shortname:  req.body.shortname,
+              reknown: req.body.reknown,
+              bio:  req.body.bio,
+              posts:   req.body.posts,
+              postsDates: req.body.postsDates}
     },
     {
       new: true

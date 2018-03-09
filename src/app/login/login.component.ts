@@ -11,9 +11,11 @@ import{UserService} from '../user.service';
 })
 export class LoginComponent implements OnInit{
 
-  currentUser : object;
+  currentUser : User;
   failure : string;
   users:Array<User>;
+  loginned : boolean;
+  notlogined : boolean;
 
   constructor(private router:Router, private _userService:UserService){ }
 
@@ -23,13 +25,17 @@ export class LoginComponent implements OnInit{
       for(var i = 0; i < this.users.length; i++)
       {
         if(this.users[i].username == userName && this.users[i].password == password){
-          this.router.navigate(['gallery']);
+          this.currentUser = this.users[i];
+          this.loginned = true;
+          this.notlogined = false;
         }
       }
       this.failure = "The password that you've entered is incorrect.";
   }
 
   ngOnInit(){
+      this.loginned = false;
+      this.notlogined = true;
       this.failure = '';
       this._userService.getUsers()
         .subscribe(resUserData => this.users = resUserData )

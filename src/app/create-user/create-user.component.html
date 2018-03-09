@@ -4,16 +4,18 @@
   <div class="col-md-4">
     <section class="login-form">
 
-      <form #form="ngForm" role="login">
+      <form #form="ngForm" (ngSubmit)="onSubmitRegister(form.value)" role="login">
         <img src="../../assets/images/socialOwlLogo.png" width="200" height="160"/>
         <h1 align="center">Register</h1>
-        <input required name="email" placeholder="User Name" required class="form-control input-lg"/>
-        <input placeholder="First Name" required class="form-control input-lg" />
-        <input placeholder="Last Name" required class="form-control input-lg" />
-        <input type="password" required class="form-control input-lg" id="password" placeholder="Password" />
-        <input type="password" required class="form-control input-lg" id="password" placeholder="Confirm Password" />
-        <div class="pwstrength_viewport_progress"></div>
-        <button (click)="onCreateUser(user)" type="submit" class="btn btn-lg btn-primary btn-block">Register</button>
+        <input required name="username"   placeholder="User Name"  required class="form-control input-lg" ngModel />
+        <input required name="firstName"  placeholder="First Name" required class="form-control input-lg" ngModel />
+        <input required name="lastName"   placeholder="Last Name"  required class="form-control input-lg" ngModel />
+        <input required name="password"   placeholder="Password"   required class="form-control input-lg" ngModel type="password"  id="password" />
+        <input required name="confirm"    placeholder="Confirm Password"  ngModel type="password" required class="form-control input-lg" id="password"  />
+        <div>
+           <h6 style="color:red" *ngIf="passwordMatchingFailure">{{passwordMatchingFailure}}</h6>
+        </div>
+        <button routerLink="login" outerLinkActive="active" type="submit" class="btn btn-lg btn-primary btn-block">Register</button>
       </form>
     </section>
   </div>

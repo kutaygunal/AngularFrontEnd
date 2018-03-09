@@ -4,4 +4,11 @@ export class User {
   password: string;
   firstName: string;
   lastName: string;
+  confirm: string;
+  name: string;
+  shortname: string;
+  reknown: string;
+  bio: string;
+  posts: string[];
+  postsDates: string[];
 }

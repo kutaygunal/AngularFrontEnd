@@ -16,11 +16,16 @@ import { LoginComponent } from './login/login.component';
 import { RouterModule, Routes } from '@angular/router';
 import { CreateUserComponent } from './create-user/create-user.component';
 import { HomeComponent } from './home/home.component';
+import { UserService } from './user.service';
 
 
 const appRoutes:Routes = [
   {
      path:'',
+     component: LoginComponent
+  },
+  {
+     path:'login',
      component: LoginComponent
   },
   {
@@ -58,7 +63,7 @@ const appRoutes:Routes = [
     HttpClientModule,
     HttpModule
   ],
-  providers: [ImageService,ImageFilterPipe],
+  providers: [ImageService,ImageFilterPipe,UserService],
   bootstrap: [AppComponent]
 })
 export class AppModule{ }
