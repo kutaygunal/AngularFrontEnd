@@ -25,7 +25,10 @@ export class LoginComponent implements OnInit{
       for(var i = 0; i < this.users.length; i++)
       {
         if(this.users[i].username == userName && this.users[i].password == password){
-          this.currentUser = this.users[i];
+          this._userService.addUser(this.users[i])
+           .subscribe(resNewUser => {
+               this.users.push(resNewUser);
+           })
           this.loginned = true;
           this.notlogined = false;
         }

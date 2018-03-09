@@ -2,15 +2,13 @@ import { Injectable,Output} from '@angular/core';
 import { Http,Response, Headers, RequestOptions } from '@angular/http';
 import 'rxjs/add/operator/map';
 import{User} from './user';
-import { EventEmitter } from '@angular/core';
 
 @Injectable()
 export class UserService {
 
   private _getUrl = "/api/userAccounts";
   private _postUrl = "/api/userAccounts";
-
-  @Output() change: EventEmitter<User> = new EventEmitter();
+  private _deleteUrl = "/api/userAccounts/";
 
   constructor(private _http: Http){
   }
@@ -27,7 +25,9 @@ export class UserService {
       .map((response:Response) => response.json());
   }
 
-  sendUser(user: User){
-    this.change.emit(user);
+  deleteCurrentUser(user : User){
+    return this._http.delete(this._deleteUrl + user._id)
+      .map((response: Response) => response.json());
   }
+
 }

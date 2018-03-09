@@ -13,7 +13,6 @@ const userAccountSchema = new Schema({
     bio: String,
     posts: [String],
     postsDates: [String]
-
 })
 
 module.exports = mongoose.model('userAccount',userAccountSchema,'userAccounts')

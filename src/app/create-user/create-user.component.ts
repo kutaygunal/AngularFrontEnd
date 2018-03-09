@@ -13,6 +13,8 @@ export class CreateUserComponent implements OnInit {
 
   users:Array<User>;
   passwordMatchingFailure : string;
+  firstPost = ["This is my first post. Hello Social Owl."];
+  firstPostDate = ["Today"];
 
   constructor(private _userService:UserService, private router:Router) { }
   onSubmitRegister(user:User){
@@ -21,20 +23,19 @@ export class CreateUserComponent implements OnInit {
        user.name = user.firstName + "_" + user.lastName;
        user.reknown = "New Comer";
        user.bio = "Please enter your bio, here";
-       user.posts[0] =  "This is my first post. Hello Social Owl";
-       user.postsDates[0] = "Today";
+       user.posts = this.firstPost;
+       user.postsDates = this.firstPostDate;
        this._userService.addUser(user)
         .subscribe(resNewUser => {
             this.users.push(resNewUser);
-        })
+        });
         this.passwordMatchingFailure = 'Your account has been created.';
-        this.router.navigate(['login']);
+        this.router.navigate(['']);
      }
      else{
        this.passwordMatchingFailure = 'Password does not match the confirm password.';
      }
   }
-
   ngOnInit() {
     this.passwordMatchingFailure = '';
   }
