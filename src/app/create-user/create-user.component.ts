@@ -1,7 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output,EventEmitter } from '@angular/core';
 import{User} from '../user';
 import{UserService} from '../user.service';
-import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-create-user',
@@ -11,26 +10,29 @@ import { Router } from '@angular/router';
 })
 export class CreateUserComponent implements OnInit {
 
-  users:Array<User>;
+  users: User[] = [];
+  usersDb: User[] = [];
+  @Output() userCreated = new EventEmitter();
   passwordMatchingFailure : string;
+  defaultBio : string;
+  defaultReknown : string;
   firstPost = ["This is my first post. Hello Social Owl."];
   firstPostDate = ["Today"];
 
-  constructor(private _userService:UserService, private router:Router) { }
+  constructor(private _userService:UserService){ }
+
   onSubmitRegister(user:User){
      if(user.password == user.confirm){
        user.name = user.firstName + " " + user.lastName;
-       user.name = user.firstName + "_" + user.lastName;
-       user.reknown = "New Comer";
-       user.bio = "Please enter your bio, here";
+       user.reknown = this.defaultReknown;
+       user.bio = this.defaultBio;
        user.posts = this.firstPost;
        user.postsDates = this.firstPostDate;
-       this._userService.addUser(user)
-        .subscribe(resNewUser => {
+       this._userService.addUser(user).subscribe(resNewUser => {
             this.users.push(resNewUser);
         });
         this.passwordMatchingFailure = 'Your account has been created.';
-        this.router.navigate(['']);
+        this.userCreated.emit(true);
      }
      else{
        this.passwordMatchingFailure = 'Password does not match the confirm password.';
@@ -38,6 +40,8 @@ export class CreateUserComponent implements OnInit {
   }
   ngOnInit() {
     this.passwordMatchingFailure = '';
+    this.defaultBio = "Please enter your bio, here";
+    this.defaultReknown = "New Comer";;
   }
 
 }

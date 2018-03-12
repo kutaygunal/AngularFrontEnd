@@ -1,46 +1,50 @@
-import { Component,OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { Component,OnInit,Output,Input,EventEmitter} from '@angular/core';
 import{User} from '../user';
 import{UserService} from '../user.service';
 
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
-  styleUrls: ['./login.component.css'],
-  providers: [UserService]
+  styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit{
 
+  @Input() users : Array<User>;
+  @Output() loginUser = new EventEmitter();
   currentUser : User;
   failure : string;
-  users:Array<User>;
-  loginned : boolean;
-  notlogined : boolean;
+  goToRegister :  boolean;
+  goToLogin : boolean;
 
-  constructor(private router:Router, private _userService:UserService){ }
+  constructor(private _userService:UserService){ }
 
-  loginUser(e){
+  onLoginUser(e){                            // when user enter his username and password
       var userName = e.target.elements[0].value;
       var password = e.target.elements[1].value;
       for(var i = 0; i < this.users.length; i++)
       {
-        if(this.users[i].username == userName && this.users[i].password == password){
-          this._userService.addUser(this.users[i])
-           .subscribe(resNewUser => {
-               this.users.push(resNewUser);
-           })
-          this.loginned = true;
-          this.notlogined = false;
+        if(this.users[i].username == userName && this.users[i].password == password){     // confirm username and password in dabatabe
+          this.currentUser = this.users[i];
+          this.loginUser.emit(this.currentUser);             // set user information as currentUser & send them to relevant component
         }
       }
-      this.failure = "The password that you've entered is incorrect.";
+      this.failure = "The password that you've entered is incorrect.";    // Give error if it is not matched.
   }
 
-  ngOnInit(){
-      this.loginned = false;
-      this.notlogined = true;
-      this.failure = '';
-      this._userService.getUsers()
-        .subscribe(resUserData => this.users = resUserData )
+  onCreateUser(e){                            // when user click create account link
+      this.goToRegister = !this.goToRegister;
+      this.goToLogin = !this.goToLogin;
   }
+
+  onUserCreated(registered){                         // when user create an account
+      this.goToRegister = !registered;
+      this.goToLogin = registered;
+  }
+
+  ngOnInit(){                                // angular initializer
+      this.failure = '';
+      this.goToRegister = false;
+      this.goToLogin = true;
+  }
+
 }

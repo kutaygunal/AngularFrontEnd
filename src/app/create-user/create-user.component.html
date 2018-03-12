@@ -1,4 +1,3 @@
-
 <div class="row" id="pwd-container">
   <div class="col-md-4"></div>
   <div class="col-md-4">
@@ -10,8 +9,8 @@
         <input required name="username"   placeholder="User Name"  required class="form-control input-lg" ngModel />
         <input required name="firstName"  placeholder="First Name" required class="form-control input-lg" ngModel />
         <input required name="lastName"   placeholder="Last Name"  required class="form-control input-lg" ngModel />
-        <input required name="password"   placeholder="Password"   required class="form-control input-lg" ngModel type="password"  id="password" />
-        <input required name="confirm"    placeholder="Confirm Password"  ngModel type="password" required class="form-control input-lg" id="password"  />
+        <input required name="password"   placeholder="Password"   required class="form-control input-lg" ngModel type="password"  />
+        <input required name="confirm"    placeholder="Confirm Password"  ngModel type="password" required class="form-control input-lg" />
         <div>
            <h6 style="color:red" *ngIf="passwordMatchingFailure">{{passwordMatchingFailure}}</h6>
         </div>

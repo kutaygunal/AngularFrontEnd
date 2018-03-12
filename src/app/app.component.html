@@ -1,1 +1,8 @@
-<router-outlet></router-outlet>
+
+<app-login  *ngIf="notlogined" [users] = "users"  (loginUser) = "onLoginUser($event)"></app-login>
+<app-navbar *ngIf="logined" [currentUser] = "currentUser" [users] = "users" ></app-navbar>
+<app-user-details *ngIf="logined" [user] = "currentUser" ></app-user-details>
+
+
+<!--
+<a data-fancybox="gallery" href="../assets/images/ankara.jpg"><img src="../assets/images/ankara.jpg"></a> -->

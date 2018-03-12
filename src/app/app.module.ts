@@ -15,30 +15,13 @@ import { ImageFilterPipe} from './image/shared/filter.pipe';
 import { LoginComponent } from './login/login.component';
 import { RouterModule, Routes } from '@angular/router';
 import { CreateUserComponent } from './create-user/create-user.component';
-import { HomeComponent } from './home/home.component';
 import { UserService } from './user.service';
 
 
 const appRoutes:Routes = [
   {
-     path:'',
-     component: LoginComponent
-  },
-  {
-     path:'login',
-     component: LoginComponent
-  },
-  {
-     path:'home',
-     component: HomeComponent
-  },
-  {
      path:'createUser',
      component: CreateUserComponent
-  },
-  {
-     path:'gallery',
-     component: GalleryComponent
   }
 ]
 
@@ -53,8 +36,7 @@ const appRoutes:Routes = [
     ImageComponent,
     ImageFilterPipe,
     LoginComponent,
-    CreateUserComponent,
-    HomeComponent
+    CreateUserComponent
   ],
   imports: [
     RouterModule.forRoot(appRoutes),

@@ -65,3 +65,5 @@ form[role=login] {
 	.form-links a {
 		color: #fff;
 	}
+
+  #createUser {text-align:center;}

@@ -1,8 +1,8 @@
-<div *ngIf="notlogined" class="row" id="pwd-container">
+<div *ngIf="goToLogin" class="row" id="pwd-container">
   <div class="col-md-4"></div>
   <div class="col-md-4">
     <section class="login-form">
-      <form (submit)="loginUser($event)" role="login">
+      <form (submit)="onLoginUser($event)" role="login">
         <img src="../../assets/images/socialOwlLogo.png" width="200" height="160"/>
         <h1 align="center">Social Owls</h1>
         <input type="email" name="email" placeholder="User Name" required class="form-control input-lg" />
@@ -12,13 +12,14 @@
         <div>
            <h6 style="color:red" *ngIf="failure">{{failure}}</h6>
         </div>
-        <div>
-            Don't you have account? <a routerLink="createUser" routerLinkActive="active">Create account</a>
-        </div>
+        <p align="center" >Don't you have account? <a [routerLink]="" (click)="onCreateUser($event)"> Create Account
+        </a>
+        </p>
       </form>
     </section>
   </div>
-  <div class="col-md-4"></div>
+  <div class="col-md-4">
+  </div>
 </div>
 
-<app-home *ngIf="loginned"></app-home>
+<app-create-user *ngIf="goToRegister" (userCreated) = "onUserCreated($event)" ></app-create-user>

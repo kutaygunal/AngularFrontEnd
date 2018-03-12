@@ -1,8 +1,12 @@
-import{Component}from'@angular/core';
+import{Component,OnInit,Input}from'@angular/core';
+import{UserService} from './user.service';
+import{User} from './user';
+import { Router }  from '@angular/router';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
+  providers: [UserService],
   styles: [
   `
     .list-group-item:first-child{
@@ -29,5 +33,28 @@ import{Component}from'@angular/core';
   `
   ]
  })
-export class AppComponent{
+export class AppComponent implements OnInit{
+
+  @Input() users : Array<User>;
+  currentUser : User;
+  logined : boolean;
+  notlogined : boolean;
+  registration : boolean;
+
+  constructor(private _userService:UserService,private _router: Router){ }
+
+  onLoginUser(currentUser){
+    if(currentUser){
+      this.logined = true;
+      this.notlogined = false;
+      this.currentUser = currentUser;
+    }
+  }
+
+  ngOnInit(){
+      this.logined = false;
+      this.notlogined = true;
+      this._userService.getUsers()
+      .subscribe(resUserData => this.users = resUserData )
+  }
 }

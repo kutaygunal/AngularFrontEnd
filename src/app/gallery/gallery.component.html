@@ -7,7 +7,9 @@
 <div class="row">
   <ul id="thumbnailList">
     <li *ngFor="let image of (visibleImages | imageFilter:filterBy)">
-      <img src="{{image.url}}" class="tn" width="200" height="160">
+        <a data-fancybox="gallery" href="{{image.url}}">
+          <img src="{{image.url}}" class="tn" width="150" height="120">
+        </a>
     </li>
   </ul>
 </div>

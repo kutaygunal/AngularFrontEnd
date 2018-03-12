@@ -1,21 +1,44 @@
-<!-- Image and text -->
-<nav class="navbar navbar-light bg-faded">
-  <a class="navbar-brand" href="#">
-    <img src="../assets/images/socialOwlLogo.png" width="30" height="30" class="d-inline-block align-top" alt="">
-    Social Owls
-  </a>
-
-  <div id="about">
-    <img id="headerImage" src="../assets/images/kutaygunal-image.jpg" style="width:70px;" alt="Kutay Gunal">
-    <li  id="accountName" class="nav-item dropdown">
-      <a class="nav-link dropdown-toggle" href="http://example.com" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-        Kutay Günal
-      </a>
-      <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-        <a class="dropdown-item" href="#">Home</a>
-        <a class="dropdown-item" href="#">Images</a>
-        <a class="dropdown-item" href="#">Logout</a>
+<div class="position-relative  container">
+  <div class="row justify-content-left">
+    <div class="card-body">
+      <nav class="navbar navbar-light bg-light sticky-top justify-content-between">
+        <a class="navbar-brand mr-auto" href="#">
+          <img src="../assets/images/socialOwlLogo.png" width="30" height="30" class="d-inline-block align-top" alt="">
+          Social Owls
+        </a>
+        <form class="form-inline my-2 my-lg-0">
+          <a class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              {{currentUser.name}}
+            </a>
+            <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+              <a class="dropdown-item" href="#">Home</a>
+              <a class="dropdown-item" href="#">Photos</a>
+              <div class="dropdown-divider"></div>
+              <a class="dropdown-item" href="#">Logout</a>
+            </div>
+          </a>
+          <img id="headerImage" class="nav-item my-2 my-sm-0" [src]="'../assets/images/' + currentUser.shortname + '_tn.jpg'" style="width:70px;" alt="Kutay Gunal">
+        </form>
+      </nav>
+      <div class="form-group">
+        <div class="form-label" *ngIf="query"><strong>Searching: </strong> {{query}} </div>
       </div>
-    </li>
+      <input class="form-control form-control-sm mt-2" type="text"
+      [(ngModel)]="query">
+    </div>
+</div>
+
+<div class="position-absolute container" style="left: 0; z-index:10">
+  <div class="row justify-content-left">
+    <div class="col-sm-10 col-md-8 col-lg-6 col-xl-5">
+      <div class="list-group" *ngIf="query" >
+        <a href="#" class="list-group-item list-group-item-action flex-column align-items-start"
+        *ngFor="let user of (users | searchUser : query)"
+        (click)="showUser(user)"
+        [style.backgroundColor]="user.highlight ? '#EEE' : '#FFF'">
+        <app-user-items [user] = "user"></app-user-items>
+      </a>
+    </div>
   </div>
-</nav>
+</div>
