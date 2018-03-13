@@ -1,8 +1,5 @@
 
-<app-login  *ngIf="notlogined" [users] = "users"  (loginUser) = "onLoginUser($event)"></app-login>
-<app-navbar *ngIf="logined" [currentUser] = "currentUser" [users] = "users" ></app-navbar>
-<app-user-details *ngIf="logined" [user] = "currentUser" ></app-user-details>
-
-
-<!--
-<a data-fancybox="gallery" href="../assets/images/ankara.jpg"><img src="../assets/images/ankara.jpg"></a> -->
+<app-login  *ngIf="notlogined" [users] = "users" (loginUser) = "onLoginUser($event)"></app-login>
+<app-navbar *ngIf="logined" [currentUser] = "currentUser" [users] = "users"  (viewingUser) = "onViewUser($event)" ></app-navbar>
+<app-user-details *ngIf="logined && homePage" [user] = "currentUser"  [pt]= "pt"  [postDate]= "postDate"></app-user-details>
+<app-other-user-details  *ngIf="viewingUser" [vUser]="viewingUser"></app-other-user-details>

@@ -36,6 +36,11 @@ export class LoginComponent implements OnInit{
       this.goToLogin = !this.goToLogin;
   }
 
+  onPostingText(e){
+    console.log("naber");
+
+  }
+
   onUserCreated(registered){                         // when user create an account
       this.goToRegister = !registered;
       this.goToLogin = registered;

@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import {Input} from '@angular/core';
+import {Input,Output,EventEmitter} from '@angular/core';
 import{User} from '../user';
 
 @Component({
@@ -11,15 +11,19 @@ export class NavbarComponent{
 
   @Input() currentUser : User;
   @Input() users : Array<User>;
+  @Output() viewingUser = new EventEmitter();
   query : string;
-  name : string;
 
   showUser(item){
-    this.query = item.name;
+    this.query = '';
     item.highlight = !item.highlight;
-    this.currentUser= item;
+    this.viewingUser.emit(item._id);
   }
-  
+
+  onClickedHome(event){
+    this.viewingUser.emit('');
+  }
+
   constructor(){
     this.query = '';
   }
