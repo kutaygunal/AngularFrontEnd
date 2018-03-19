@@ -13,9 +13,8 @@
             </a>
             <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
               <a class="dropdown-item" (click)="onClickedHome($event)">Home</a>
-              <a class="dropdown-item" href="#">Photos</a>
               <div class="dropdown-divider"></div>
-              <a class="dropdown-item" href="#">Logout</a>
+              <a class="dropdown-item" (click)="onClickedLogout($event)">Logout</a>
             </div>
           </a>
           <img id="headerImage" class="nav-item my-2 my-sm-0" [src]="'../assets/images/' + currentUser.shortname + '_tn.jpg'" style="width:70px;" alt="Kutay Gunal">

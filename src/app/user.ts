@@ -11,4 +11,5 @@ export class User {
   bio: string;
   posts: string[];
   postsDates: string[];
+  friends: string[];
 }

@@ -1,5 +1,5 @@
 
 <app-login  *ngIf="notlogined" [users] = "users" (loginUser) = "onLoginUser($event)"></app-login>
-<app-navbar *ngIf="logined" [currentUser] = "currentUser" [users] = "users"  (viewingUser) = "onViewUser($event)" ></app-navbar>
-<app-user-details *ngIf="logined && homePage" [user] = "currentUser"  [pt]= "pt"  [postDate]= "postDate"></app-user-details>
-<app-other-user-details  *ngIf="viewingUser" [vUser]="viewingUser"></app-other-user-details>
+<app-navbar *ngIf="logined" [currentUser] = "currentUser" [users] = "users"  (viewingUser) = "onViewUser($event)" (onLogout) = "onLogout($event)" ></app-navbar>
+<app-user-details *ngIf="logined && homePage" [user] = "currentUser"   [friendList] = "friendList" [users] = "users" ></app-user-details>
+<app-other-user-details  *ngIf="viewingUser" [vUser]="viewingUser" [users] = "users" [friendList] = "viewingUserfriendList" (onAddingFriend)="onAddasFriend($event)" ></app-other-user-details>

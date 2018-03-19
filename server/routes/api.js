@@ -53,6 +53,7 @@ router.post('/userAccounts', function (req,res){
   newUser.bio = req.body.bio;
   newUser.posts = req.body.posts;
   newUser.postsDates = req.body.postsDates;
+  newUser.friends = req.body.friends;
   newUser.save(function(err,createdUser){
     if(err){
       console.log("Error creating user");
@@ -77,7 +78,9 @@ router.put('/userAccounts/:id',function(req,res){
               reknown: req.body.reknown,
               bio:  req.body.bio,
               posts:   req.body.posts,
-              postsDates: req.body.postsDates}
+              postsDates: req.body.postsDates,
+              friends: req.body.friends
+            }
     },
     {
       new: true

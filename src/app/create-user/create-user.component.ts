@@ -18,6 +18,7 @@ export class CreateUserComponent implements OnInit {
   defaultReknown : string;
   firstPost = ["This is my first post. Hello Social Owl."];
   firstPostDate = ["Today"];
+  firstFriend = ["5aa0529e734d1d3717fbf810"];   // Kutay 
 
   constructor(private _userService:UserService){ }
 
@@ -27,7 +28,9 @@ export class CreateUserComponent implements OnInit {
        user.reknown = this.defaultReknown;
        user.bio = this.defaultBio;
        user.posts = this.firstPost;
+       user.shortname = "noone"
        user.postsDates = this.firstPostDate;
+       user.friends = this.firstFriend;
        this._userService.addUser(user).subscribe(resNewUser => {
             this.users.push(resNewUser);
         });

@@ -18,3 +18,16 @@ app.get('*', (req,res) => {
 app.listen(port, function(){
   console.log("Server is running on localhost :  " + port);
 })
+
+var multer  = require('multer');
+var storage = multer.diskStorage({
+    destination: function (req, file, cb) {
+        cb(null, './uploads/')
+    },
+    filename: function (req, file, cb) {
+        cb(null, file.originalname+ '-' + Date.now()+'.jpg')
+    }
+});
+var upload = multer({ storage: storage });
+
+app.post('/multer', upload.single('file'));

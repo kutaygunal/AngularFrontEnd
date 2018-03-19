@@ -1,4 +1,12 @@
 
-  #feeding{
-          margin-top: 15px;
-          }
+#feeding{
+  margin-top: 15px;
+}
+
+#headerImage{
+  width: 19%;
+  border-style: solid;
+  border-width: thin;
+  border-color: black;
+  border-radius: 50%;
+}

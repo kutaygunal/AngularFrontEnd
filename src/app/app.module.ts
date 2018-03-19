@@ -17,6 +17,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { CreateUserComponent } from './create-user/create-user.component';
 import { UserService } from './user.service';
 import { OtherUserDetailsComponent } from './other-user-details/other-user-details.component';
+import { FriendsListComponent } from './friends-list/friends-list.component';
 
 
 const appRoutes:Routes = [
@@ -38,7 +39,8 @@ const appRoutes:Routes = [
     ImageFilterPipe,
     LoginComponent,
     CreateUserComponent,
-    OtherUserDetailsComponent
+    OtherUserDetailsComponent,
+    FriendsListComponent
   ],
   imports: [
     RouterModule.forRoot(appRoutes),

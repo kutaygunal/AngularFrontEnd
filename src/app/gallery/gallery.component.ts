@@ -14,6 +14,7 @@ export class GalleryComponent implements OnChanges {
   @Input() filterBy?: string = 'all'
   visibleImages : any[] = [];
   images = '';
+  selectedFile : File = null;
 
   acceptedMimeTypes = [
     'image/gif',
@@ -32,6 +33,19 @@ export class GalleryComponent implements OnChanges {
     this.visibleImages = this.imageService.getImages();
   }
 
+
+  onFileSelected(event){
+    this.selectedFile = <File>event.target.files[0];
+  }
+
+  onUpload(event){
+    const fd = new FormData();
+    fd.append('image',this.selectedFile,"NAber");
+    this.http.post('/api/userAccounts',fd)
+    .subscribe(res => {
+    });
+  }
+
   previewFile() {
     const file = this.fileInput.nativeElement.files[0];
     if (file && this.validateFile(file)) {
@@ -44,7 +58,6 @@ export class GalleryComponent implements OnChanges {
       this.errorMsg = 'File must be jpg, png, or gif and cannot be exceed 500 KB in size'
     }
   }
-
 
   uploadFile(event: Event) {
     event.preventDefault();
@@ -63,6 +76,7 @@ export class GalleryComponent implements OnChanges {
         this.errorMsg = 'Could not upload image.';
       }
     );
+
   }
 
 }
@@ -70,5 +84,4 @@ export class GalleryComponent implements OnChanges {
 validateFile(file) {
   return this.acceptedMimeTypes.includes(file.type) && file.size < 500000;
 }
-
 }
